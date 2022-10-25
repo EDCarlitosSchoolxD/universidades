@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
+    public $timestamps = true;
+
+    public $fillable = ['estado','slug','image'];
+
     use HasFactory;
 }

@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\State>
  */
@@ -18,6 +18,9 @@ class StateFactory extends Factory
     {
         return [
             //
+            'estado' => $title = $this->faker->randomElement(['Quintana Roo','Yucatan']),
+            'slug' => Str::slug($title),
+            'image' => $this->faker->imageUrl(640,480,'city'),
         ];
     }
 }
