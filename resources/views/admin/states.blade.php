@@ -3,6 +3,13 @@
 @section('content')
     @include('layouts.navigation')
 
+    <div class="container">
+        <a href="{{route('states.create')}}" class="w-12 bg-emerald-500 hover:bg-emerald-600
+        rounded p-3 text-white
+        ">Nueva Universidad</a>
+    </div>
+
+
 
     <div class="bg-white mt-5 container-sm">
 
@@ -33,7 +40,7 @@
                        {{$item->estado}}
                     </td>
                     <td class="p-4 w-1/4">
-                        <img class="w-max h-max" src="{{$item->image}}" alt="{{$item->estado}}">
+                        <img class="w-max h-max" src="{{asset('storage/'.$item->image)}}" alt="{{$item->estado}}">
                     </td>
 
                     <td class="text-center">
@@ -49,10 +56,10 @@
 
                         </form>
 
-                        <button class="bg-blue-400
+                        <a href="{{route('states.edit',$item->id)}}" class="bg-blue-400
                         p-2 rounded-full text-white
                         hover:bg-blue-500
-                        ">Actualizar</button>
+                        ">Actualizar</a>
                     </td>
 
                  </tr>

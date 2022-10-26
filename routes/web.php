@@ -32,25 +32,48 @@ Route::get('/',function(){
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/dashboard/estados',[StateController::class,'index'])
-->middleware(['auth','verified'])
-->name('admin.states');
-
-Route::get('/dashboard/municipios',[MunicipalityController::class,'index'])
-->middleware(['auth','verified'])->name('admin.municipalities');
-
-Route::get('/dashboard/universidades',[UniversityController::class,'index'])
-->middleware(['auth','verified'])->name('admin.universities');
 
 
-/**DELETE METHODS */
-Route::delete('/dashboard/estados/{id}',[StateController::class,'destroy'])
-->middleware(['auth','verified'])->name('states.destroy');
-Route::delete('/dashboard/estados/{id}',[MunicipalityController::class,'destroy'])
-->middleware(['auth','verified'])->name('municipalities.destroy');
-Route::delete('/dashboard/universities/{id}',[UniversityController::class,'destroy'])
-->middleware(['auth','verified'])->name('universities.destroy');
+
+Route::middleware(['auth','verified'])->group(function(){
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    /**Estados */
+    Route::get('/dashboard/estados',[StateController::class,'index'])
+    ->name('admin.states');
+    Route::get('/dashboard/estados/create',[StateController::class,'create'])
+    ->name('states.create');
+    Route::delete('/dashboard/estados/{id}',[StateController::class,'destroy'])
+    ->name('states.destroy');
+    Route::post('/dashboard/estados',[StateController::class,'store'])
+    ->name('states.store');
+    Route::get('/dashboard/estados/{id}/edit',[StateController::class,'edit'])
+    ->name('states.edit');
+
+    Route::put('/dashboard/estados/{id}',[StateController::class,'update'])
+    ->name('states.update');
+
+
+
+
+
+
+
+    Route::get('/dashboard/municipios',[MunicipalityController::class,'index'])
+    ->name('admin.municipalities');
+    Route::get('/dashboard/universidades',[UniversityController::class,'index'])
+    ->name('admin.universities');
+
+
+
+
+    Route::delete('/dashboard/municipios/{id}',[MunicipalityController::class,'destroy'])
+    ->name('municipalities.destroy');
+    Route::delete('/dashboard/universities/{id}',[UniversityController::class,'destroy'])
+    ->name('universities.destroy');
+
+
+});
