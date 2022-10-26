@@ -4,6 +4,12 @@
     @include('layouts.navigation')
 
 
+    <div class="container">
+        <a href="{{route('municipalities.create')}}" class="w-12 bg-emerald-500 hover:bg-emerald-600
+        rounded p-3 text-white
+        ">Agregar Municipio</a>
+    </div>
+
     <div class="bg-white mt-5 container-sm">
 
         <div class="overflow-x-auto border-x border-t">
@@ -55,10 +61,10 @@
                         </button>
 
                         </form>
-                        <button class="bg-blue-400
+                        <a href="{{route('municipalities.edit',$item->id)}}" class="bg-blue-400
                         p-2 rounded-full text-white
                         hover:bg-blue-500
-                        ">Actualizar</button>
+                        ">Actualizar</a>
                     </td>
 
                  </tr>

@@ -6,7 +6,7 @@
     <div class="container">
         <a href="{{route('states.create')}}" class="w-12 bg-emerald-500 hover:bg-emerald-600
         rounded p-3 text-white
-        ">Nueva Universidad</a>
+        ">Agregar Estado</a>
     </div>
 
 

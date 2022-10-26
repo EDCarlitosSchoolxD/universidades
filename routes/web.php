@@ -58,20 +58,25 @@ Route::middleware(['auth','verified'])->group(function(){
 
 
 
-
-
-
-
+    /**Municipios */
     Route::get('/dashboard/municipios',[MunicipalityController::class,'index'])
     ->name('admin.municipalities');
-    Route::get('/dashboard/universidades',[UniversityController::class,'index'])
-    ->name('admin.universities');
-
-
-
-
     Route::delete('/dashboard/municipios/{id}',[MunicipalityController::class,'destroy'])
     ->name('municipalities.destroy');
+    Route::get('/dashboard/municipios/create',[MunicipalityController::class,'create'])
+    ->name('municipalities.create');
+    Route::post('/dashboard/municipios/',[MunicipalityController::class,'store'])
+    ->name('municipalities.store');
+    Route::get('/dashboard/municipios/{id}/edit',[MunicipalityController::class,'edit'])
+    ->name('municipalities.edit');
+    Route::put('/dashboard/municipios/{id}',[MunicipalityController::class,'update'])
+    ->name('municipalities.update');
+
+
+
+
+    Route::get('/dashboard/universidades',[UniversityController::class,'index'])
+    ->name('admin.universities');
     Route::delete('/dashboard/universities/{id}',[UniversityController::class,'destroy'])
     ->name('universities.destroy');
 
