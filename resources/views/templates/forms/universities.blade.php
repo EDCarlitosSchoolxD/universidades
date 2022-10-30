@@ -4,7 +4,15 @@
     type="text"
     name="nombre"
     id="nombre"
-    value="">
+    @if (old('nombre'))
+        value="{{old('nombre')}}"
+
+    @elseif (isset($data->nombre))
+        value="{{$data->nombre}}"
+    @endif
+
+    >
+
 </div>
 <div class="flex flex-col mb-4">
     <label class="mb-2 font-bold text-lg text-gray-900" for="image">Imagen</label>
@@ -14,8 +22,19 @@
 <div class="flex flex-col mb-4">
     <label class="mb-2 font-bold text-lg text-gray-900" for="tipo">Tipo:</label>
     <select name="tipo" id="tipo">
-        <option value="Privada">Privada</option>
-        <option value="Publica">Publica</option>
+
+        @if(old("tipo"))
+            <option {{old("tipo") == "Privada"?"selected":""}} value="Privada">Privada</option>
+            <option {{old("tipo") == "Publica"?"selected":""}} value="Publica">Publica</option>
+        @elseif(isset($data->tipo))
+            <option {{$data->tipo == "Privada"?"selected":""}} value="Privada">Privada</option>
+            <option {{$data->tipo == "Publica"?"selected":""}} value="Publica">Publica</option>
+        @else
+            <option  value="Privada">Privada</option>
+            <option  value="Publica">Publica</option>
+        @endif
+
+
     </select>
 
 </div>
@@ -24,7 +43,17 @@
     <label class="mb-2 font-bold text-lg text-gray-900" for="image">Estado:</label>
     <select name="estado" id="estado">
         @foreach ($states as $state)
-            <option value="{{$state->id}}">{{$state->estado}}</option>
+
+            @if(old("estado"))
+                <option {{old("estado") == $state->id?'selected':''}} value="{{$state->id}}">{{$state->estado}}</option>
+
+            @elseif(isset($data->state))
+                <option {{$data->state == $state->id?'selected':''}} value="{{$state->id}}">{{$state->estado}}</option>
+            @else
+                <option value="{{$state->id}}">{{$state->estado}}</option>
+            @endif
+
+
         @endforeach
     </select>
 
@@ -33,6 +62,20 @@
 <div class="flex flex-col mb-4">
     <label class="mb-2 font-bold text-lg text-gray-900" for="image">Municipio:</label>
     <select name="id_municipio" id="id_municipio">
+        @foreach ($municipalities as $municipality)
+
+            @if(old("id_municipio"))
+                <option {{old("id_municipio") == $municipality->id?'selected':''}} value="{{$municipality->id}}">{{$municipality->municipio}}</option>
+
+            @elseif(isset($data->id_municipio))
+                <option {{$data->id_municipio == $municipality->id?'selected':''}} value="{{$municipality->id}}">{{$municipality->municipio}}</option>
+            @else
+                <option value="{{$municipality->id}}">{{$municipality->municipio}}</option>
+            @endif
+
+
+        @endforeach
+
         @foreach ($municipalities as $municipality)
             <option value="{{$municipality->id}}">{{$municipality->municipio}}</option>
         @endforeach
@@ -48,7 +91,17 @@
     type="tel"
     name="telefono"
     id="telefono"
-    value="">
+    @if (old("telefono"))
+        value="{{old("telefono")}}"
+    @elseif(isset($data->telefono))
+        value="{{$data->telefono}}"
+    @else
+        value=""
+    @endif
+
+>
+
+
 </div>
 
 
@@ -58,7 +111,16 @@
     type="url"
     name="url_web"
     id="url_web"
-    value="">
+
+    @if (old("url_web"))
+        value="{{old("url_web")}}"
+    @elseif(isset($data->url_web))
+        value="{{$data->url_web}}"
+    @else
+        value=""
+    @endif
+
+    >
 </div>
 
 
@@ -70,7 +132,15 @@
         type="text"
         name="latitud"
         id="latitud"
-        value="">
+
+        @if (old("latitud"))
+            value="{{old("latitud")}}"
+        @elseif(isset($data->latitud))
+            value="{{$data->latitud}}"
+        @else
+            value=""
+        @endif
+        >
     </div>
     <div class="flex flex-col mb-4">
         <label class="mb-2 font-bold text-lg text-gray-900" for="url_web">Longitud</label>
@@ -79,7 +149,16 @@
         type="text"
         name="longitud"
         id="longitud"
-        value="">
+
+        @if (old("longitud"))
+            value="{{old("longitud")}}"
+        @elseif(isset($data->longitud))
+            value="{{$data->longitud}}"
+        @else
+            value=""
+        @endif
+
+        >
     </div>
 
 </div>

@@ -67,7 +67,7 @@ class UniversityController extends Controller
             'image' => ['image','required'],
             'id_municipio' => ['required','integer'],
             'latitud' => ['required','numeric'],
-            'longitud' => ['required']
+            'longitud' => ['required','numeric']
         ]);
 
         $datos = request()->only(['nombre','tipo','direccion','telefono','url_web','image','id_municipio'
@@ -89,6 +89,60 @@ class UniversityController extends Controller
 
 
     }
+
+    public function edit($id){
+        $states = State::all();
+        $municipalities = Municipality::all();
+        $university = University::findOrFail($id);
+
+        return view('admin.university-edit',["data" => $university,
+        "states" => $states,
+        "municipalities" => $municipalities]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+        if(University::where('id','=',$id)->count() > 0){
+
+            $this->validate($request,[
+                'nombre' => ['required'],
+                'tipo' => ['required','in:Publica,Privada'],
+                'telefono' => ['required'],
+                'url_web' => ['required','url'],
+                'image' => ['image','mimes:jpg,png'],
+                'id_municipio' => ['required','integer'],
+                'latitud' => ['required','numeric'],
+                'longitud' => ['required','numeric'],
+            ]);
+
+            $datos = request()->only(['nombre','tipo','direccion','telefono','url_web','image','id_municipio']);
+            $universityBeforeUpdate = University::findOrFail($id);
+
+            if(isset($request->nombre)){
+                $datos['slug'] = Str::slug($request->nombre);
+            }
+
+            if($request->hasFile('image')){
+
+                $university = University::findOrFail($id);
+                Storage::delete('public/'.$university->image);
+                $datos['image'] = $request->file('image')->store('universities','public');
+
+            }
+
+            University::where('id','=',$id)->update($datos);
+
+
+
+
+        }
+
+        return redirect()->route('universities.edit',$id);
+
+    }
+
+
     public function map()
     {
         # code...

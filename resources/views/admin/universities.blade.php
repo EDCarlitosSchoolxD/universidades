@@ -72,10 +72,10 @@
                         </button>
 
                         </form>
-                        <button class="bg-blue-400
+                        <a href="{{route('universities.edit',$item->id)}}" class="bg-blue-400
                         p-2 rounded-full text-white
                         hover:bg-blue-500 duration-300
-                        ">Actualizar</button>
+                        ">Actualizar</a>
                     <a href="{{route('universities.show',$item->slug)}}" class="bg-lime-600
                         p-2 rounded-full text-white
                         hover:bg-lime-700 duration-300

@@ -83,6 +83,10 @@ Route::middleware(['auth','verified'])->group(function(){
     ->name('universities.create');
     Route::post('/dashboard/universidades/',[UniversityController::class,'store'])
     ->name('universities.store');
+    Route::get('/dashboard/universidades/{id}/edit',[UniversityController::class,'edit'])
+    ->name('universities.edit');
+    Route::put('/dashboard/universidades/{id}',[UniversityController::class,'update'])
+    ->name('universities.update');
 
 });
 
