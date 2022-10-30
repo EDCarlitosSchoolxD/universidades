@@ -4,7 +4,14 @@
     @include('layouts.navigation')
 
 
+    <div class="container">
+        <a href="{{route('universities.create')}}" class="w-12 my-3 bg-emerald-500 hover:bg-emerald-600
+        rounded p-3 text-white
+        ">Agregar Universidad</a>
+    </div>
+
     <div class="bg-white mt-5 container-sm">
+
 
         <div class="overflow-x-auto border-x border-t">
            <table class="table-auto w-full">
@@ -69,12 +76,12 @@
                         p-2 rounded-full text-white
                         hover:bg-blue-500 duration-300
                         ">Actualizar</button>
-                    <button class="bg-lime-600
+                    <a href="{{route('universities.show',$item->slug)}}" class="bg-lime-600
                         p-2 rounded-full text-white
                         hover:bg-lime-700 duration-300
                     ">
                         Más informacion
-                    </button>
+                    </a>
                     </td>
 
                  </tr>

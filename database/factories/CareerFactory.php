@@ -31,7 +31,7 @@ class CareerFactory extends Factory
                 'image' => $this->faker->imageUrl($category='technics'),
                 'likes' => rand(1,300),
                 'tipo' => $this->faker->randomElement(['Ingenieria','Licenciatura','Maestria']),
-                'id_universidad' => rand(1,40),
+                'id_universidad' => rand(1,20),
 
             ];
     }

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
             State::factory(2)->create();
             Municipality::factory(30)->create();
-            University::factory(100)->create();
+            University::factory(20)->create();
             Career::factory(1000);
             \App\Models\User::factory()->create([
                 'name' => 'EDCarlitosxD',

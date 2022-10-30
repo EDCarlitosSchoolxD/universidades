@@ -74,11 +74,20 @@ Route::middleware(['auth','verified'])->group(function(){
 
 
 
-
+    /**Universidades */
     Route::get('/dashboard/universidades',[UniversityController::class,'index'])
     ->name('admin.universities');
     Route::delete('/dashboard/universities/{id}',[UniversityController::class,'destroy'])
     ->name('universities.destroy');
-
+    Route::get('/dashboard/universidades/create',[UniversityController::class,'create'])
+    ->name('universities.create');
+    Route::post('/dashboard/universidades/',[UniversityController::class,'store'])
+    ->name('universities.store');
 
 });
+
+Route::get('/universidades/{slug}',[UniversityController::class,'show'])
+->name('universities.show');
+
+
+Route::get('/map',[UniversityController::class,'map']);

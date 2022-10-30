@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Municipality;
+use App\Models\State;
 use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
 class UniversityController extends Controller
 {
     //
@@ -18,6 +20,19 @@ class UniversityController extends Controller
 
         return view('admin.universities',['data'=>$universities]);
 
+    }
+    public function show($slug){
+        $university = University::where('slug','=',$slug)->firstOrFail();
+
+        return view('pages.university',["universidad" => $university]);
+    }
+
+    public function create(){
+        $states = State::all();
+        $municipalities = Municipality::all();
+
+        return view('admin.universities-create',["states" => $states,
+        "municipalities" => $municipalities]);
     }
 
 
@@ -38,4 +53,48 @@ class UniversityController extends Controller
 
 
     }
+
+
+    public function store(Request $request)
+    {
+        //
+        $this->validate($request,[
+            'nombre' => ['required','unique:universities'],
+            'tipo' => ['required','in:Publica,Privada'],
+            //'direccion' => ['required'],
+            'telefono' => ['required'],
+            'url_web' => ['required','url'],
+            'image' => ['image','required'],
+            'id_municipio' => ['required','integer'],
+            'latitud' => ['required','numeric'],
+            'longitud' => ['required']
+        ]);
+
+        $datos = request()->only(['nombre','tipo','direccion','telefono','url_web','image','id_municipio'
+        ,'latitud','longitud']);
+
+        $datos['slug'] = Str::slug($request->nombre);
+        $datos['likes'] = 0;
+
+
+
+        if($request->hasFile('image')){
+            $datos['image'] = $request->file('image')->store('university','public');
+        }
+
+
+        University::create($datos);
+
+        return redirect()->route('admin.universities');
+
+
+    }
+    public function map()
+    {
+        # code...
+
+
+        return view('map', compact('initialMarkers'));
+    }
+
 }

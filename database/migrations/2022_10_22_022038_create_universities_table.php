@@ -17,12 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('nombre',255)->unique();
             $table->string('tipo');
-            $table->text('direccion');
             $table->string('telefono',100);
             $table->text('url_web');
             $table->text('image');
             $table->text('slug')->unique();
             $table->integer('likes');
+            $table->string('latitud',255);
+            $table->string('longitud',255);
+
             $table->unsignedBigInteger('id_municipio');
 
             $table->foreign('id_municipio')->references('id')->on('municipalities')->onDelete('cascade');

@@ -9,7 +9,8 @@ class University extends Model
 {
     use HasFactory;
 
-    public $fillable = ['nombre','direccion','telefono','tipo','url_web','image','slug','likes','id_municipio'];
+    public $fillable = ['nombre','direccion','telefono','tipo','url_web','image','slug','likes','id_municipio',
+    'latitud','longitud'];
 
 
     public function municipality(){

@@ -20,8 +20,9 @@ class UniversityFactory extends Factory
             //
             "nombre" => $name = $this->faker->name(),
             "tipo" => $this->faker->randomElement(['Privada','Publica']),
-            "direccion" => $this->faker->streetName(),
             "telefono" => $this->faker->phoneNumber(),
+            "latitud" => "23.757193589462446",
+            "longitud" => "-102.49948164542302",
             "url_web" => $this->faker->url(),
             "image" => $this->faker->imageUrl(),
             "slug" => Str::slug($name),
