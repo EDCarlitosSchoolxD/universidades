@@ -28,7 +28,7 @@ class CareerFactory extends Factory
                 'perfil_ingreso' => $this->faker->text(500),
                 'perfil_egreso' => $this->faker->text(500),
                 'plan_estudio' => $this->faker->text(500),
-                'image' => $this->faker->imageUrl($category='technics'),
+                'image' => $this->faker->imageUrl(),
                 'likes' => rand(1,300),
                 'tipo' => $this->faker->randomElement(['Ingenieria','Licenciatura','Maestria']),
                 'id_universidad' => rand(1,20),

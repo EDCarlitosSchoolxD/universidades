@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
      integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
      crossorigin=""/><title>JMA-Universidades</title>
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.core.css" rel="stylesheet">
 <body>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
 @yield('content')
-
 
 
 </body>

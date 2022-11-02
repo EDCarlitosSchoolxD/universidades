@@ -1,3 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@use '~quill/dist/quill.core.css';
+@use '~quill/dist/quill.snow.css';

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\MunicipalityController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UniversityController;
+use App\Models\University;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,6 +89,19 @@ Route::middleware(['auth','verified'])->group(function(){
     ->name('universities.edit');
     Route::put('/dashboard/universidades/{id}',[UniversityController::class,'update'])
     ->name('universities.update');
+
+
+    Route::delete('/dashboard/universidad/{slug}/carera/{id}',[CareerController::class,'destroy'])
+    ->name('career.destroy');
+    Route::get('/dashboard/career/{id}/create',[CareerController::class,'create'])
+    ->name('career.create');
+    Route::post('/dashboard/career/',[CareerController::class,'store'])
+    ->name('career.store');
+    Route::get('/dashboard/carera/{id}/edit',[CareerController::class,'edit'])
+    ->name('career.edit');
+    Route::put('/dashboard/career/{id}',[CareerController::class,'update'])
+    ->name('career.update');
+
 
 });
 

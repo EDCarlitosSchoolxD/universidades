@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             State::factory(2)->create();
             Municipality::factory(30)->create();
             University::factory(20)->create();
-            Career::factory(1000);
+            Career::factory(1000)->create();
             \App\Models\User::factory()->create([
                 'name' => 'EDCarlitosxD',
                 'email' => 'juanuchdzib@gmail.com',
