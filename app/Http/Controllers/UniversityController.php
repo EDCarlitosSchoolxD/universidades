@@ -143,6 +143,11 @@ class UniversityController extends Controller
     }
 
 
+    public function indexui(){
+        $universities = University::paginate(20);
+        return view('pages.universidades',['data' => $universities]);
+    }
+
     public function map()
     {
         # code...

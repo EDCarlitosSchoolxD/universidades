@@ -13,7 +13,7 @@ class Career extends Model
     ,'image','id_universidad','tipo','slug','likes'];
 
     public function university(){
-        return $this->belongsTo(University::class,'id');
+        return $this->belongsTo(University::class,'id_universidad');
 
     }
 }

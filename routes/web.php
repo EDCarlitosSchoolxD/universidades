@@ -105,8 +105,12 @@ Route::middleware(['auth','verified'])->group(function(){
 
 });
 
+
+Route::get('/universidades',[UniversityController::class,'indexui'])
+->name('universities.indexui');
 Route::get('/universidades/{slug}',[UniversityController::class,'show'])
 ->name('universities.show');
-
+Route::get('/universidades/{slug}/carera/{slugC}',[CareerController::class,'show'])
+->name('career.show');
 
 Route::get('/map',[UniversityController::class,'map']);

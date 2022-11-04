@@ -117,4 +117,11 @@ class CareerController extends Controller
         $career = Career::findOrFail($id);
         return view('admin.career-edit',['data' => $career, 'id' => $career->id_universidad]);
     }
+
+    public function show($slug,$slug2){
+        $career = Career::where('slug','=',$slug2)->firstOrFail();
+        return view('pages.career',["career" => $career]);
+    }
+
+
 }

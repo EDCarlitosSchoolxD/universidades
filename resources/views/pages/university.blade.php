@@ -11,14 +11,21 @@
             }
         </style>
 
-        <div class="container mb-10">
-            {{$universidad->id}}
-            <h2 id="universidad">{{$universidad->nombre}}</h2>
-            <p>{{$universidad->tipo}}</p>
-            <p>{{$universidad->telefono}}</p>
-            <a href="{{$universidad->url_web}}">Web</a>
-            <img src="{{$universidad->image}}" alt="{{$universidad->nombre}}">
-            <p>{{$universidad->direccion}}</p>
+        <img src="{{$universidad->image}}" class="w-full h-screen" alt="">
+
+
+        <div class="container mb-10 flex flex-col justify-center items-center mt-5 gap-3">
+            <h2 class="text-center text-3xl font-bold" id="universidad">{{$universidad->nombre}}</h2>
+
+            <div>
+                <p>{{$universidad->direccion}}</p>
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{$universidad->tipo}}</span>
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Telefono: {{$universidad->telefono}}</span>
+                <a href="{{$universidad->url_web}}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Página de la escuela</a>
+            </div>
+
+
+
 
             <div id="map"></div>
 
@@ -37,33 +44,40 @@
 
 
 
-        <div class="flex flex-wrap justify-evenly gap-5 mt-10">
-            @foreach ($universidad->careers as $career)
-            <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="{{$career->image}}" alt="{{$career->carera}}">
-                <div class="px-6 py-4">
-                    <h3>{{$career->carera}}</h3>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{$career->tipo}}</span>
-                    @auth
-                        <form class="inline" method="POST" action="{{route('career.destroy',[
-                            'slug'=> $universidad->slug,
-                            'id' => $career->id
-                            ])}}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"  class="bg-red-500 p-3 rounded-lg text-white">Eliminar</button>
-                        </form>
-                        <a href="{{route('career.edit',$career->id)}}" class="bg-blue-500 p-3 rounded-lg text-white">Editar</a>
-                    @endauth
+        <div class="container-lg">
+            <h3 class="text-center text-2xl font-normal">Carreras de la universidad</h3>
+            <div class="flex flex-wrap justify-evenly gap-5 mt-10">
+                @foreach ($universidad->careers as $career)
+                <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                    <img class="w-full" src="{{$career->image}}" alt="{{$career->carera}}">
+                    <div class="px-6 py-4">
+                        <h3>{{$career->carera}}</h3>
+                    </div>
+                    <div class="px-6 pt-4 pb-2">
+                        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{$career->tipo}}</span>
+                        @auth
+                            <form class="inline" method="POST" action="{{route('career.destroy',[
+                                'slug'=> $universidad->slug,
+                                'id' => $career->id
+                                ])}}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"  class="bg-red-500 p-3 rounded-lg text-white">Eliminar</button>
+                            </form>
+                            <a href="{{route('career.edit',$career->id)}}" class="bg-blue-500 p-3 rounded-lg text-white">Editar</a>
+                        @endauth
 
-                  </div>
+                    </div>
+                    <div class="px-6 pt-4 pb-2">
+                        <a href="{{route('career.show',[$universidad->slug,$career->slug])}}">Más informacion</a>
+                    </div>
+
+                </div>
+            @endforeach
 
             </div>
-        @endforeach
-
         </div>
+
 
 
 
