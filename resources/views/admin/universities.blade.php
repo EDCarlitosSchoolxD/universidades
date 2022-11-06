@@ -51,7 +51,7 @@
                         {{$item->tipo}}
                      </td>
                     <td class="p-4 w-1/4">
-                        <img class="w-max h-max" src="{{$item->image}}" alt="{{$item->nombre}}">
+                        <img class="w-max h-max" src="{{asset('storage/'.$item->image)}}" alt="{{$item->nombre}}">
                     </td>
 
                     <td class="p-4">

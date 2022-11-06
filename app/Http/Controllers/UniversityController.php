@@ -143,17 +143,30 @@ class UniversityController extends Controller
     }
 
 
-    public function indexui(){
+    public function indexui(Request $request){
+
+
         $universities = University::paginate(20);
+
+        if(request('municipio')){
+            $municipio  =request('municipio');
+            $municipality = Municipality::where('slug','=',$municipio)->firstOrFail();
+
+            return view('pages.universidades',['data' => $municipality->universities,'municipio' => $municipality]);
+        }
+
+        if(request('buscar')){
+            $buscar = request('buscar');
+
+            $universities = University::join('municipalities','universities.id_municipio','=','municipalities.id')
+            ->select('universities.*','municipalities.municipio')
+            ->where('universities.nombre','LIKE','%'.$buscar.'%')
+            ->get();
+        }
+
+
+
         return view('pages.universidades',['data' => $universities]);
-    }
-
-    public function map()
-    {
-        # code...
-
-
-        return view('map', compact('initialMarkers'));
     }
 
 }

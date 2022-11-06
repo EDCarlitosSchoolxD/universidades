@@ -6,6 +6,7 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\UniversityController;
 use App\Models\University;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,4 +114,7 @@ Route::get('/universidades/{slug}',[UniversityController::class,'show'])
 Route::get('/universidades/{slug}/carera/{slugC}',[CareerController::class,'show'])
 ->name('career.show');
 
-Route::get('/map',[UniversityController::class,'map']);
+
+Route::get('{slug}/municipios',[StateController::class,'show'])
+->name('states.show');
+

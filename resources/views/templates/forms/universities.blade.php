@@ -76,9 +76,7 @@
 
         @endforeach
 
-        @foreach ($municipalities as $municipality)
-            <option value="{{$municipality->id}}">{{$municipality->municipio}}</option>
-        @endforeach
+
     </select>
 
 </div>

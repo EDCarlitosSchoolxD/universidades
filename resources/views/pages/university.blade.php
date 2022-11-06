@@ -11,7 +11,7 @@
             }
         </style>
 
-        <img src="{{$universidad->image}}" class="w-full h-screen" alt="">
+        <img src="{{asset('storage/'.$universidad->image)}}" class="w-full h-screen object-cover shadow-md" alt="">
 
 
         <div class="container mb-10 flex flex-col justify-center items-center mt-5 gap-3">
@@ -21,7 +21,7 @@
                 <p>{{$universidad->direccion}}</p>
                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{$universidad->tipo}}</span>
                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Telefono: {{$universidad->telefono}}</span>
-                <a href="{{$universidad->url_web}}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Página de la escuela</a>
+                <a target="_BLANK" href="{{$universidad->url_web}}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#Página de la escuela</a>
             </div>
 
 
@@ -49,7 +49,7 @@
             <div class="flex flex-wrap justify-evenly gap-5 mt-10">
                 @foreach ($universidad->careers as $career)
                 <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                    <img class="w-full" src="{{$career->image}}" alt="{{$career->carera}}">
+                    <img class="w-full" src="{{asset('storage/'.$career->image)}}" alt="{{$career->carera}}">
                     <div class="px-6 py-4">
                         <h3>{{$career->carera}}</h3>
                     </div>
@@ -68,8 +68,10 @@
                         @endauth
 
                     </div>
-                    <div class="px-6 pt-4 pb-2">
-                        <a href="{{route('career.show',[$universidad->slug,$career->slug])}}">Más informacion</a>
+                    <div class="px-6 pt-4 pb-4 text-center">
+                        <a href="{{route('career.show',[$universidad->slug,$career->slug])}}"
+                        class="bg-slate-800 hover:bg-slate-700 text-center inline-block px-6 w-full pt-4 pb-4 text-white">
+                        Más informacion</a>
                     </div>
 
                 </div>
@@ -79,7 +81,9 @@
         </div>
 
 
-
+        <br><br>
+        <br><br>
+        <br><br>
 
 
         <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>

@@ -42,7 +42,7 @@
                        {{$item->municipio}}
                     </td>
                     <td class="p-4 w-1/4">
-                        <img class="w-max h-max" src="{{$item->image}}" alt="{{$item->municipio}}">
+                        <img class="w-max h-max" src="{{asset('storage/'.$item->image)}}" alt="{{$item->municipio}}">
                     </td>
 
                     <td class="p-4">

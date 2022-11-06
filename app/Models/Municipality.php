@@ -15,4 +15,9 @@ class Municipality extends Model
         return $this->belongsTo(State::class,'id_state');
     }
 
+    public function universities(){
+        return $this->hasMany(University::class,'id_municipio','id');
+    }
+
+
 }

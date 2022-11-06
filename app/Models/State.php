@@ -12,4 +12,8 @@ class State extends Model
     public $fillable = ['estado','slug','image'];
 
     use HasFactory;
+
+    public function municipalities(){
+        return $this->hasMany(Municipality::class,'id_state','id');
+    }
 }

@@ -24,10 +24,13 @@
                  <option
                  {{old('id_state') == $data->id_state?'selected':''}}
                   value="{{$estado->id}}">{{$estado->estado}}</option>
-            @else
+            @elseif(isset($data->id_state))
                 <option
                 {{$data->id_state == $estado->id?'selected':''}}
                    value="{{$estado->id}}">{{$estado->estado}}</option>
+            @else
+                <option
+                value="{{$estado->id}}">{{$estado->estado}}</option>
             @endif
 
 

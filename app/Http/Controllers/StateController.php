@@ -95,4 +95,11 @@ class StateController extends Controller
 
     }
 
+    public function show($slug)
+    {
+        $state = State::where('slug','=',$slug)->firstOrFail();
+
+        return view('pages.estado',['data' => $state]);
+    }
+
 }
